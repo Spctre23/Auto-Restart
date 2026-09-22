@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 
-namespace PluginTemplate;
+namespace AutoRestart;
 
 public class Config
 {
     public static Config Instance { get; private set; } = new();
-
-    public bool SampleBooleanSetting { get; set; } = true;
-    public int SampleIntSetting { get; set; } = 5;
+    public int TargetHour { get; set; } = 24;
+    public int TargetMinute { get; set; } = 0;
+    public int RestartIntervalDays { get; set; } = 1;
+    public bool BroadcastRestartWarning { get; set; } = true;
 
     public static void Load(string configPath)
     {

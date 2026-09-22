@@ -1,6 +1,6 @@
 # TShock Expanded Plugin Template
 
-This repository expands on the [official TShock plugin template](https://github.com/TShockResources/PluginTemplate) to include additional infrastructure for configuration files and chat commands.
+This repository expands on the [official TShock plugin template](https://github.com/TShockResources/AutoRestart) to include additional infrastructure for configuration files and chat commands.
 
 Supports the latest version of TShock: 6.1.0
 
