@@ -41,7 +41,7 @@ public class RestartSchedule
             _delay =  _restartTime - DateTime.Now;
 
             string hourWarning = $"Server will perform a quick scheduled restart in {_delay.TotalMinutes} minutes.";
-            string fiveSecWarning = $"Restarting in {_delay.TotalSeconds}...";
+            string secondsWarning = $"Restarting in {_delay.TotalSeconds}...";
 
             switch ((int)_delay.TotalMinutes)
             {
@@ -52,7 +52,7 @@ public class RestartSchedule
             switch ((int)_delay.TotalSeconds)
             {
                 case <= 10:
-                    Broadcast(fiveSecWarning);
+                    Broadcast(secondsWarning);
                     break;
             }
 
