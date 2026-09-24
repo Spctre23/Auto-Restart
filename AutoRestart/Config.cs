@@ -5,7 +5,7 @@ namespace AutoRestart;
 public class Config
 {
     public static Config Instance { get; private set; } = new();
-    public int TargetHour { get; set; } = 24;
+    public int TargetHour { get; set; } = 0;
     public int TargetMinute { get; set; } = 0;
     public int RestartIntervalDays { get; set; } = 1;
     public bool BroadcastRestartWarning { get; set; } = true;

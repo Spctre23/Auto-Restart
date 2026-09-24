@@ -10,7 +10,7 @@ namespace AutoRestart;
 public class AutoRestart(Main game) : TerrariaPlugin(game)
 {
     public override string Name => "AutoRestart";
-    public override Version Version => new(1, 0, 0);
+    public override Version Version => new(1, 0, 1);
     public override string Author => "Spctre";
     public override string Description => "A simple TShock auto restart plugin for terraria servers.";
     private readonly string _configPath = Path.Combine(TShock.SavePath, "AutoRestart.json");
