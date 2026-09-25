@@ -38,15 +38,19 @@ public class RestartSchedule
         while (true)
         {
             _now = DateTime.Now;
-            _delay =  _restartTime - DateTime.Now;
+            _delay = _restartTime - DateTime.Now;
+            TimeSpan awaitDelay = TimeSpan.FromMinutes(1);
 
-            string hourWarning = $"Server will perform a quick scheduled restart in {_delay.TotalMinutes} minutes.";
-            string secondsWarning = $"Restarting in {_delay.TotalSeconds}...";
+            string hourWarning = $"Server will perform a scheduled restart in {(int)_delay.TotalMinutes} minutes.";
+            string secondsWarning = $"Restarting in {(int)_delay.TotalSeconds}...";
 
             switch ((int)_delay.TotalMinutes)
             {
                 case int n when (n == 60 || n == 30 || n == 15 || n == 10 || n == 5 || n == 2):
                     Broadcast(hourWarning);
+                    break;
+                case <= 2:
+                    awaitDelay = TimeSpan.FromSeconds(1);
                     break;
             }
             switch ((int)_delay.TotalSeconds)
@@ -58,7 +62,7 @@ public class RestartSchedule
 
             try
             {
-                await Task.Delay(1000, token);
+                await Task.Delay(awaitDelay, token);
             }
             catch (TaskCanceledException) { return; }
         }

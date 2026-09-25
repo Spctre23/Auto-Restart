@@ -10,7 +10,7 @@ namespace AutoRestart;
 public class AutoRestart(Main game) : TerrariaPlugin(game)
 {
     public override string Name => "AutoRestart";
-    public override Version Version => new(1, 0, 1);
+    public override Version Version => new(1, 0, 2);
     public override string Author => "Spctre";
     public override string Description => "A simple TShock auto restart plugin for terraria servers.";
     private readonly string _configPath = Path.Combine(TShock.SavePath, "AutoRestart.json");
@@ -20,9 +20,10 @@ public class AutoRestart(Main game) : TerrariaPlugin(game)
     {
         Config.Load(_configPath);
         GeneralHooks.ReloadEvent += Reload;
-
-        StartRestartScheduler();
+        ServerApi.Hooks.GamePostInitialize.Register(this, OnGamePostInitialize);
     }
+
+    private void OnGamePostInitialize(EventArgs args) => StartRestartScheduler();
 
     private void Reload(ReloadEventArgs args)
     {
